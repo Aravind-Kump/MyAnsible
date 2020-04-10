@@ -1,0 +1,41 @@
+diff --git a/ansible/ansible.cfg b/ansible/ansible.cfg
+index 579001e..e62b3c5 100644
+--- a/ansible/ansible.cfg
++++ b/ansible/ansible.cfg
+@@ -1,2 +1,3 @@
+ [defaults]
+ inventory = ./dev
++vault_password_file = ~/.vault_pass.txt
+diff --git a/ansible/group_vars/all b/ansible/group_vars/all
+deleted file mode 100644
+index 0dd6558..0000000
+--- a/ansible/group_vars/all
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-db_name: demo
+-db_user: demo
+-db_pass: demo
+diff --git a/ansible/group_vars/all/vars b/ansible/group_vars/all/vars
+new file mode 100644
+index 0000000..0ae2ea4
+--- /dev/null
++++ b/ansible/group_vars/all/vars
+@@ -0,0 +1,4 @@
++---
++db_name: demo
++db_user: demo
++db_pass: "{{ vault_db_pass }}"
+diff --git a/ansible/group_vars/all/vault b/ansible/group_vars/all/vault
+new file mode 100644
+index 0000000..d076dad
+--- /dev/null
++++ b/ansible/group_vars/all/vault
+@@ -0,0 +1,7 @@
++$ANSIBLE_VAULT;1.1;AES256
++31326664313635666139646530343436636439393631313266353235393335643639343932623535
++3561366265333735616236353263633134363564653766310a303932653039613161623864366263
++33386537306131323166663564663436613136393461643263346465613134393966333763646330
++6631623439343361320a306632366166393262393539626430633638656134346162633235366338
++62643935326162643565363534313435313863323531373763376234353963363839353131643033
++6331636266353032383062336331643135666633373065353838
